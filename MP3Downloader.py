@@ -11,9 +11,7 @@ match = regex.group(1)
 data = json.loads(match)
 url_data = data['url_encoded_fmt_stream_map']
 # url_data = data['probe_url']
-print(data)
 video_url = parse_qs(url_data)['url'][0]
-print(video_url)
 # video_url = url_data
 # set up file name
 if len(sys.argv)>2:
@@ -25,7 +23,7 @@ write_to_file = open(to_file_path + '.tmp', 'wb')
 # get video content via stream
 print('Start Download: ' + data['title'])
 video_res = requests.get(video_url, stream=True)
-if video_res.status_code != 200:
+if video_res.status_code != requests.codes.ok:
     print('Invalid Response: ' + str(video_res.status_code))
 else:
     # copy video stream
