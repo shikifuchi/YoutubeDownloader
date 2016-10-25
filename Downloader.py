@@ -11,7 +11,7 @@ match = regex.group(1)
 data = json.loads(match)
 url_data = data['url_encoded_fmt_stream_map']
 # url_data = data['probe_url']
-video_url = parse_qs(url_data)['url'][0]
+video_url = parse_qs(url_data)['url'][1]
 # video_url = url_data
 # set up file name
 if len(sys.argv)>2:
